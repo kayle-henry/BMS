@@ -29,7 +29,6 @@ create table topics(
 
 create table articles(
    artID int AUTO_INCREMENT,
-   topID int; //look at this
    authorID int NOT NULL, index(authorID),
    catID int NOT NULL, index(catID),
    title varchar(255),

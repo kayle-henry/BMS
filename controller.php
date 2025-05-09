@@ -21,7 +21,7 @@
             }
             $page = $_REQUEST['page'];
              if ($page==null){
-                $page="home"; //Name check homeView.php?
+                $page="home";
             }
         
             //***** 2. Route the Request to the Controller Based on Method and Page *** */
@@ -44,21 +44,30 @@
 
         private function loadControllers(){
             //User based 
-            $controllers["GET"."list"] = new ContactList();
-            $controllers["GET"."add"] = new ContactAdd(); //create user
-            $controllers["POST"."add"] = new ContactAdd();
-            $controllers["GET"."delete"] = new ContactDelete();
-            $controllers["POST"."delete"] = new ContactDelete();
+            $controllers["GET"."listUsers"] = new ListUsers();
+            $controllers["GET"."addUser"] = new UserAdd();
+            $controllers["GET"."deleteUser"] = new UserDelete();
+            //login
             $controllers["GET"."login"] = new Login();
             $controllers["POST"."login"] = new Login();
-
             //Home page
             $controllers["GET"."home"] = new Home();
-
             //Topics
-
+            $controllers["GET"."listTopics"] = new ListTopics();
+            $controllers["GET"."addTopic"] = new TopicAdd();
+            $controllers["GET"."deleteTopic"] = new TopicDelete();
+            $controllers["GET"."updateTopic"] = new TopicUpdate();
             //Article
-            $controllers["GET"."about"] = new About();
+            $controllers["GET"."about"] = new ArticleView();
+            $controllers["GET"."addArt"] = new ArticleAdd();
+            $controllers["GET"."deleteArt"] = new ArticleDelete();
+            $controllers["GET"."updateArt"] = new ArticleUpdate();
+            //Comments
+            $controllers["GET"."listComments"] = new ListComments();
+            $controllers["GET"."addComment"] = new CommentsAdd();
+            $controllers["GET"."deleteComment"] = new CommentsDelete();
+            $controllers["GET"."updateComment"] = new CommentsUpdate();
+            
             return $controllers;
         }
 

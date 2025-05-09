@@ -1,47 +1,59 @@
 <?php
-    class Comment{
-        private $comID;
-        private $authorID;
-        private $artID;
-        private $content;
 
-        public function load($row){
-            $this->setContactID($row['contactID']);
-            $this->setUsername($row['username']);
-            $this->setEmail($row["email"]);
-            $this->setPasswd($row["passwd"]);
-        }
+class Comment {
+    private int $id;
+    private int $articleId;
+    private int $userId;
+    private string $content;
+    private string $timestamp;
 
-        public function setComID($comID){
-            $this->comID=$comID;
-        }
-
-        public function getComID(){
-            return $this->comID;
-        }
-
-        public function setAuthorID($authorID){
-            $this->authorID=$authorID;
-        }
-
-        public function getAuthorID(){
-            return $this->authorID;
-        }
-
-        public function setArtID($artID){
-            $this->artID=$artID;
-        }
-
-        public function getArtID(){
-            return $this->artID;
-        }
-
-        public function setContent($content){
-            $this->content=$content;
-        }
-
-        public function getContent(){
-            return $this->content;
-        }
+    public function __construct(int $id = 0, int $articleId = 0, int $userId = 0, string $content = null, string $timestamp = '') {
+        $this->id = $id;
+        $this->articleId = $articleId;
+        $this->userId = $userId;
+        $this->content = $content;
+        $this->timestamp = $timestamp;
     }
+
+    public function getId(): int {
+        return $this->id;
+    }
+
+    public function setId(int $id): void {
+        $this->id = $id;
+    }
+
+    public function getArticleId(): int {
+        return $this->articleId;
+    }
+
+    public function setArticleId(int $articleId): void {
+        $this->articleId = $articleId;
+    }
+
+    public function getUserId(): int {
+        return $this->userId;
+    }
+
+    public function setUserId(int $userId): void {
+        $this->userId = $userId;
+    }
+
+    public function getContent(): ?string {
+        return $this->content;
+    }
+
+    public function setContent(?string $content): void {
+        $this->content = $content;
+    }
+
+    public function getTimestamp(): string {
+        return $this->timestamp;
+    }
+
+    public function setTimestamp(string $timestamp): void {
+        $this->timestamp = $timestamp;
+    }
+}
+
 ?>

@@ -19,7 +19,7 @@
             $result = $stmt->get_result();
             while($row = $result->fetch_assoc()){
                 $user = new User();
-                $user->load($row);
+                $user->__construct($row);
                 $users[]=$user;
             }    
             $stmt->close();
@@ -53,7 +53,7 @@
             $result = $stmt->get_result();
             while($row = $result->fetch_assoc()){
                 $topic = new Topic();
-                $topic->load($row);
+                $topic->__construct($row);
                 $topics[]=$topic;
             }    
             if (!$stmt) {
@@ -106,7 +106,7 @@
             $result = $stmt->get_result();
             while($row = $result->fetch_assoc()){
                 $article = new Article();
-                $article->load($row);
+                $article->__construct($row);
                 $articles[]=$article;
             }    
             if (!$stmt) {
@@ -167,7 +167,7 @@
             $result = $stmt->get_result();
             while($row = $result->fetch_assoc()){
                 $comment = new Comment();
-                $comment->load($row);
+                $comment->__construct($row);
                 $comments[]=$comment;
             }    
             if (!$stmt) {

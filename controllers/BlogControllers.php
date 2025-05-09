@@ -2,22 +2,14 @@
 
 require_once '../models/BlogDAO.php';
 
-//---------CLASS LIST PER SECTION---------------//
-//users - ListUsers, UserAdd, UserDelete *
-//login - Login *
-//home page - Home *
-//topics - TopicAdd, TopicDelete, TopicUpdate *
-//articles - ArticleView, ArticleAdd, ArticleDelete, ArticleUpdate *
-//comments - CommentsView, CommentAdd, CommentDelete, CommentUpdate *
-
 //Users
+
     class ListUsers implements ControllerAction{
-        //used for admin > delete users and > add admin access
         function processGET(){ 
             $blogDAO = new BlogDAO();
-            $users = $blogDAO->getusers();
+            $users = $blogDAO->getUsers();
             $_REQUEST['users']=$users;
-            return "views/listUsers.php";
+            return "views/admin/manageUsers.php";
         }
         function processPOST(){
             return;
@@ -29,7 +21,7 @@ require_once '../models/BlogDAO.php';
 
     class UserAdd implements ControllerAction{
         function processGET(){
-            return "views/addUser.php";
+            return "views/createUser.php";
         }
         function processPOST(){
             $username=$_POST['username'];
@@ -108,6 +100,20 @@ require_once '../models/BlogDAO.php';
     }
 
 //Topics
+     class ListTopics implements ControllerAction{
+        function processGET(){ 
+            $blogDAO = new BlogDAO();
+            $users = $blogDAO->getTopics();
+            $_REQUEST['topics']=$topics;
+            return "views/admin/manageTopics.php";
+        }
+        function processPOST(){
+            return;
+        }
+        function getAccess(){
+            return "PROTECTED";
+        }
+    }
     class TopicAdd implements ControllerAction{ //Signed in user & admin
         function processGET(){
             return "views/addTopic.php";
@@ -148,7 +154,6 @@ require_once '../models/BlogDAO.php';
             return "PROTECTED";
         }
     }
-        
     
     class TopicUpdate implements ControllerAction{ //Signed in user & admin
      function processGET(){
@@ -187,7 +192,7 @@ require_once '../models/BlogDAO.php';
     }
     class ArticleAdd implements ControllerAction{ //Signed in user & admin
         function processGET(){
-            return "views/addArticle.php";
+            return "views/createArticle.php";
         }
         function processPOST(){
             $title=$_POST['title'];
@@ -252,9 +257,9 @@ require_once '../models/BlogDAO.php';
 
 
 //Comments
-    class CommentsView implements ControllerAction{
+    class ListComments implements ControllerAction{
         function processGET(){
-            return "views/comments.php";
+            return "views/manageComments.php";
         }
         function processPOST(){
             return;

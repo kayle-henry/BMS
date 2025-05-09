@@ -29,7 +29,7 @@
                             <button type="submit" class="btn btn-primary">Login</button>
                         </form>
                         <form action="controller.php" method="GET">
-                            <input type="hidden" name="page" value="newUser">
+                            <input type="hidden" name="page" value="addUser">
                             <button type="submit" class="btn btn-primary">Create Account</button>"
                             <input type="hidden" name="page" value="home">
                             <button type="submit" class="btn btn-secondary">Cancel</button>"

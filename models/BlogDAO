@@ -4,7 +4,7 @@
     class BlogDAO {
 
         public function getConnection(){
-            $mysqli = new mysqli("127.0.01","bloguser","blogpass","blogbd");
+            $mysqli = new mysqli("127.0.01","bloguser","blogpass","blogdb");
             if ($mysqli->connect_errno) {
                 $mysqli=null;
             }

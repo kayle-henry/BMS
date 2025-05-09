@@ -1,67 +1,59 @@
 <?php
-    class Article{
-        private $artID;
-        private $authorID;
-        private $catID;
-        private $title;
-        private $image;
-        private $content;
 
-        public function load($row){
-            $this->setArtID($row['artID']);
-            $this->setAuthorID($row['authorID']);
-            $this->setCatID($row['catID']);
-            $this->setTitle($row["title"]);
-            $this->setImage($row['image']);
-            $this->setContent($row["content"]);
-        }
+class Article {
+    private int $id;
+    private string $title;
+    private string $content;
+    private int $topicId;
+    private int $authorId;
 
-        public function setArtID($artID){
-            $this->artID=$artID;
-        }
-
-        public function getArtID(){
-            return $this->artID;
-        }
-
-        public function setAuthorID($authorID){
-            $this->authorID=$authorID;
-        }
-
-        public function getAuthorID(){
-            return $this->authorID;
-        }
-
-        public function setCatID($catID){
-            $this->catID=$catID;
-        }
-
-        public function getCatID(){
-            return $this->catID;
-        }
-
-        public function setTitle($title){
-            $this->title=$title;
-        }
-
-        public function getTitle(){
-            return $this->title;
-        }
-        
-        public function setImage($image){
-            $this->image=$image;
-        }
-
-        public function getImage(){
-            return $this->image;
-        }
-        
-        public function setContent($content){
-            $this->content=$content;
-        }
-
-        public function getContent(){
-            return $this->content;
-        }
+    public function __construct(int $id = 0, string $title = '', string $content = null, int $topicId = 0, int $authorId = 0) {
+        $this->id = $id;
+        $this->title = $title;
+        $this->content = $content;
+        $this->topicId = $topicId;
+        $this->authorId = $authorId;
     }
+
+    public function getId(): int {
+        return $this->id;
+    }
+
+    public function setId(int $id): void {
+        $this->id = $id;
+    }
+
+    public function getTitle(): string {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): void {
+        $this->title = $title;
+    }
+
+    public function getContent(): string {
+        return $this->content;
+    }
+
+    public function setContent(string $content): void {
+        $this->content = $content;
+    }
+
+    public function getTopicId(): int {
+        return $this->topicId;
+    }
+
+    public function setTopicId(int $topicId): void {
+        $this->topicId = $topicId;
+    }
+
+    public function getAuthorId(): int {
+        return $this->authorId;
+    }
+
+    public function setAuthorId(int $authorId): void {
+        $this->authorId = $authorId;
+    }
+}
+
 ?>

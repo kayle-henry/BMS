@@ -1,5 +1,7 @@
 <?php
 
+require_once '../models/BlogDAO.php';
+
 //---------CLASS LIST PER SECTION---------------//
 //users - ListUsers, UserAdd, UserDelete *
 //login - Login *
@@ -12,7 +14,7 @@
     class ListUsers implements ControllerAction{
         //used for admin > delete users and > add admin access
         function processGET(){ 
-            $blogDAO = new BlogDAO(); //name check
+            $blogDAO = new BlogDAO();
             $users = $blogDAO->getusers();
             $_REQUEST['users']=$users;
             return "views/listUsers.php";
@@ -36,7 +38,7 @@
             $user = new User();
             $user->setUsername($username);
             $user->setEmail($email);
-            $user->setPasswd($passwd);
+            $user->setPassword($passwd);
             $blogDAO = new BlogDAO();
             $blogDAO->addUser($user);
             header("Location: controller.php?page=home"); //change?
@@ -75,7 +77,7 @@
         function processPOST(){
             $username=$_POST['username'];
             $passwd=$_POST['passwd'];
-            $userDAO = new UserDAO();
+            $userDAO = new BlogDAO();
             $found=$userDAO->authenticate($username,$passwd);
             if($found==null){
                 $nextView="Location: controller.php?page=login";
@@ -126,8 +128,8 @@
         function getAccess(){
             return "PROTECTED";
         }      
-        
-    class TopicDelete impliments ControllerAction{ //Signed in user & admin
+    } 
+    class TopicDelete implements ControllerAction{ //Signed in user & admin
         function processGET(){
             $artid = $_GET['topID'];
             return 'views/deleteTopic.php'; //check
@@ -137,7 +139,7 @@
             $submit=$_POST['submit'];
             if($submit=='CONFIRM'){
                 $blogDAO = new BlogDAO();
-                $blogDAO->deleteTopic($topid);
+                $blogDAO->deleteTopic($topID);
             }
             header("Location: controller.php?page=home"); //check
             exit;
@@ -147,8 +149,8 @@
         }
     }
         
-    }
-    class TopicUpdate impliments ControllerAction{ //Signed in user & admin
+    
+    class TopicUpdate implements ControllerAction{ //Signed in user & admin
      function processGET(){
             include "views/updateTopic.php";
         }
@@ -194,7 +196,7 @@
             
             $article = new Article();
             $article->setTitle($title);
-            $article->setImage($image);
+            //$article->setImage($image);
             $article->setContent($content);
             
             $blogDAO = new BlogDAO();
@@ -225,7 +227,7 @@
             return "PROTECTED";
         }
     }
-    class ArticleUpdate impliments ControllerAction{ //Signed in user & admin
+    class ArticleUpdate implements ControllerAction{ //Signed in user & admin
      function processGET(){
             include "views/updateArticle.php";
         }
@@ -238,7 +240,7 @@
             $submit=$_POST['submit'];
             if($submit=='CONFIRM'){
                 $blogDAO = new BlogDAO();
-                $blogDAO->updateArticle($artID,$title,$image,$content);
+               // $blogDAO->updateArticle($artID,$title,$image,$content);
             }
             header("Location: controller.php?page=home");
             exit;
@@ -268,7 +270,7 @@
         function processPOST(){
             $content=$_POST['content'];
             
-            $commment = new Comment();
+            $comment = new Comment();
             $comment->setContent($content);
             
             $blogDAO = new BlogDAO();
@@ -299,7 +301,7 @@
             return "PROTECTED";
         }
     }
-    class CommentUpdate impliments ControllerAction{ //Signed in user & admin
+    class CommentUpdate implements ControllerAction{ //Signed in user & admin
      function processGET(){
             include "views/updateComment.php";
         }
@@ -310,7 +312,7 @@
             $submit=$_POST['submit'];
             if($submit=='CONFIRM'){
                 $blogDAO = new BlogDAO();
-                $blogDAO->updateComment($artID, $content);
+                //$blogDAO->updateComment($artID, $content);
             }
             header("Location: controller.php?page=home");
             exit;
